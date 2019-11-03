@@ -3,6 +3,7 @@ var app = new Vue({
   data: {
     product: 'Socks',
     description: 'A pair of warm, fuzzy socks to keep your feet warm on a cold, winter day.',
-    image: './assets/vmSocks-green-onWhite.jpg'
+    image: './assets/vmSocks-green-onWhite.jpg',
+    inStock: true
   }
 })
