@@ -9,8 +9,16 @@
   <body>
     <div id="app">
       <div class="product">
-        <h1>{{ product }}</h1>
-        <p>{{ description }}</p>
+
+        <div class="product-image">
+          <img :src="image" >
+        </div>
+
+        <div class="product-info">
+          <h1>{{ product }}</h1>
+          <p>{{ description }}</p>
+        </div>
+
       </div>
     </div>
 
