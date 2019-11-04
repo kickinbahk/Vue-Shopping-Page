@@ -51,7 +51,7 @@ Vue.component('product', {
         },
         {
           variantId: 2235,
-          variantQuantity: 0,
+          variantQuantity: 150,
           variantColor: "blue",
           variantImage: "./assets/vmSocks-blue-onWhite.jpg",
         }
@@ -70,13 +70,7 @@ Vue.component('product', {
       this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId)
     },
     removeItemFromCart: function() {
-      var currentCart = this.cart
-
-      if (currentCart > 0) {
-        this.cart -= 1
-      } else {
-        this.cart = 0
-      }
+      this.$emit('remove-from-cart', this.variants[this.selectedVariant].variantId)
     },
     updateProduct: function(index) {
       this.selectedVariant = index
@@ -126,6 +120,16 @@ var app = new Vue({
   methods: {
     updateCart(id) {
       this.cart.push(id)
+    },
+    removeItemFromCart(id) {
+      var cart = this.cart
+      cart.forEach((productId, index) => {
+        numOfItemsToRemove = 1 // We only want to remove one instance of the product
+        if (productId == id) {
+          cart.splice(index, numOfItemsToRemove)
+        }
+      })
+      return cart
     }
   }
 })
