@@ -25,5 +25,10 @@ var app = new Vue({
       "XXL"
     ],
     cart: 0
+  },
+  methods: {
+    addToCart: function() {
+      this.cart += 1
+    }
   }
 })
