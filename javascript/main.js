@@ -2,19 +2,21 @@ var app = new Vue({
   el: '#app',
   data: {
     product: "Socks",
-    description: "A pair of warm, fuzzy socks to keep your feet warm on a cold, winter day.",
     image: "./assets/vmSocks-green-onWhite.jpg",
+    description: "A pair of warm, fuzzy socks to keep your feet warm on a cold, winter day.",
     inventory: 100,
     onSale: true,
     details: ["80% Cotton", "20% Polyester", "Gender-Neutral"],
     variants: [
       {
         variantId: 2234,
-        variantColor: "green"
+        variantColor: "green",
+        variantImage: "./assets/vmSocks-green-onWhite.jpg",
       },
       {
         variantId: 2235,
-        variantColor: "blue"
+        variantColor: "blue",
+        variantImage: "./assets/vmSocks-blue-onWhite.jpg",
       }
     ],
     sizes: [
@@ -29,6 +31,9 @@ var app = new Vue({
   methods: {
     addToCart: function() {
       this.cart += 1
+    },
+    updateProduct: function(variantImage) {
+      this.image = variantImage
     }
   }
 })
