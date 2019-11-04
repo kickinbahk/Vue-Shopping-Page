@@ -4,6 +4,7 @@ var app = new Vue({
     product: 'Socks',
     description: 'A pair of warm, fuzzy socks to keep your feet warm on a cold, winter day.',
     image: './assets/vmSocks-green-onWhite.jpg',
-    inventory: 100
+    inventory: 100,
+    onSale: true
   }
 })
