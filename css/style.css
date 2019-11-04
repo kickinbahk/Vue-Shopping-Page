@@ -32,6 +32,9 @@ img {
   height: 40px;
   margin-top: 5px;
 }
+.color-box:hover {
+  cursor: pointer;
+}
 .cart {
   margin-right: 25px;
   float: right;
