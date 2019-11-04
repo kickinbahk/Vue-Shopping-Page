@@ -23,6 +23,7 @@ var app = new Vue({
       "large",
       "X-Large",
       "XXL"
-    ]
+    ],
+    cart: 0
   }
 })
