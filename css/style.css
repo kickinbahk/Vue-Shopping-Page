@@ -30,7 +30,9 @@ img {
 .color-box {
   width: 40px;
   height: 40px;
-  margin-top: 5px;
+  display: inline-block;
+  margin: 5px 15px 0 0;
+
 }
 .color-box:hover {
   cursor: pointer;
