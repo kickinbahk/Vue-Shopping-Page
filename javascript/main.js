@@ -20,9 +20,7 @@ Vue.component('product', {
         <p>Shipping: {{ shipping }}</p>
         <p>{{ description }}</p>
 
-        <ul>
-          <li v-for="detail in details">{{ detail}}</li>
-        </ul>
+        <product-details :details="details"></product-details>
 
         <div v-for="(variant, index) in variants" class="color-box" :style="{ backgroundColor: variant.variantColor}" @mouseover="updateProduct(index)" :key="variant.variantId">
         </div>
@@ -108,6 +106,20 @@ Vue.component('product', {
       }
     }
   }
+})
+
+Vue.component('product-details', {
+  props: {
+    details: {
+      type: Array, 
+      required: true
+    }
+  },
+  template: `
+    <ul>
+      <li v-for="detail in details">{{ detail}}</li>
+    </ul>
+  `
 })
 
 var app = new Vue({
