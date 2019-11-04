@@ -16,7 +16,8 @@
 
         <div class="product-info">
           <h1>{{ product }}</h1>
-          <p v-if="inStock">In Stock</p>
+          <p v-if="inventory > 10">In Stock</p>
+          <p v-else-if="inventory <= 10 && inventory > 0">Only a few left. Buy Soon!</p>
           <p v-else>Out of Stock</p>
           <p>{{ description }}</p>
         </div>
@@ -24,7 +25,8 @@
       </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="javascript/main.js"></script>
   </body>
 </html>
