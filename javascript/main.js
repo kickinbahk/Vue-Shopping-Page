@@ -34,7 +34,7 @@ Vue.component('product', {
 
       </div>
 
-      <product-review></product-review>
+      <product-review @review-submitted="addReview"></product-review>
     </div>
   `,
   data() {
@@ -64,7 +64,8 @@ Vue.component('product', {
         "large",
         "X-Large",
         "XXL"
-      ]
+      ],
+      reviews: []
     }
   },
   methods: {
@@ -77,6 +78,9 @@ Vue.component('product', {
     updateProduct: function(index) {
       this.selectedVariant = index
       console.log(index)
+    },
+    addReview: function(productReview) {
+      this.reviews.push(productReview)
     }
   },
   computed: {
