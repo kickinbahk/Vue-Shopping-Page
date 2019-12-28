@@ -33,9 +33,11 @@ Vue.component('product', {
         <button @click="removeItemFromCart" class="remove-item">Remove Item</button>
 
       </div>
+
+      <product-review></product-review>
     </div>
   `,
-  data () {
+  data() {
     return {
       product: "Socks",
       selectedVariant: 0,
@@ -109,6 +111,15 @@ Vue.component('product-details', {
       <li v-for="detail in details">{{ detail}}</li>
     </ul>
   `
+})
+
+Vue.component('product-review', {
+  template: `<input v-model="name">`,
+  data() {
+    return {
+      name: null
+    }
+  }
 })
 
 var app = new Vue({
