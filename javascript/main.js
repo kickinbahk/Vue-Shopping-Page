@@ -162,9 +162,13 @@ Vue.component('product-review', {
       </p>
       
       <p>
-        <label for="recommended">Would you recommend this product?</label>
-        <input type="radio" name="recommended" value="yes" v-model="recommended" /><span>Yes</span>
-        <input type="radio" name="recommended" value="no" v-model="recommended" /><span>No</span>
+        <label>Would you recommend this product?</label>
+        <p>
+          <input type="radio" name="recommended" value="yes" v-model="recommended" class="recommended"/><label for="recommended-yes">Yes</label>
+        </p> 
+        <p>
+          <input type="radio" name="recommended" value="no" v-model="recommended" class="recommended" /><label for="recommended-no">No</label>
+        </p>
       </p>
       <p>
         <input type="submit" value="Submit" />

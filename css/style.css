@@ -90,3 +90,8 @@ textarea {
   color: #16C0B0;
   text-decoration: underline;
 }
+.recommended {
+  display: inline-block;
+  margin-right: 10px;
+  width: unset;
+}
