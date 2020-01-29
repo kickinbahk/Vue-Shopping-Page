@@ -119,10 +119,6 @@ Vue.component('product-info-tabs', {
       type: Array, 
       required: true
     },
-    variants: {
-      type: Array,
-      required: true
-    },
     sizes: {
       type: Array, 
       required: true
@@ -152,7 +148,7 @@ Vue.component('product-info-tabs', {
   `,
   data() {
     return {
-      tabs: ['Shipping', 'Product Details'],
+      tabs: ['Product Details', 'Shipping'],
       selectedTab: 'Product Details'
     }
   }
