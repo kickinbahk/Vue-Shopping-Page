@@ -43,6 +43,15 @@ img {
   border: 1px solid #d8d8d8;
   padding: 5px 20px;
 }
+.size-label {
+  margin-bottom: 0;
+}
+.size-list {
+  margin-top: 0;
+}
+.buttons {
+  margin-bottom: 30px; 
+}
 button {
   margin-top: 30px;
   border: none;

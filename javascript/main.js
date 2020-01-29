@@ -13,26 +13,29 @@ Vue.component('product', {
       <div class="product-image">
         <img :src="image" >
       </div>
-
+      
       <div class="product-info">
         <h1>{{ product }}</h1>
         <p v-if="inventory > 10"><span v-show="onSale && inStock">On Sale!!! - </span>In Stock</p>
         <p v-else-if="inventory <= 10 && inStock "><span v-show="onSale && inStock">On Sale!!! - </span>Only a few left. Buy Soon!</p>
         <p v-else>Out of Stock</p>
-        <p>Shipping: {{ shipping }}</p>
-        <p>{{ description }}</p>
-
-        <product-details :details="details"></product-details>
-
-        <div v-for="(variant, index) in variants" class="color-box" :style="{ backgroundColor: variant.variantColor}" @mouseover="updateProduct(index)" :key="variant.variantId">
+       
+        <product-info-tabs :shipping="shipping" 
+                           :description="description"
+                           :details="details"
+                           :sizes="sizes">
+        </product-info-tabs>
+        <div v-for="(variant, index) in variants" 
+             class="color-box" 
+             :style="{ backgroundColor: variant.variantColor}" 
+             @mouseover="updateProduct(index)" 
+             :key="variant.variantId">
         </div>
-
-        <ul>
-          <li v-for="size in sizes">{{ size }}</li>
-        </ul>
-
-        <button @click="addToCart" :disabled="!inStock" :class="{ disabledButton: !inStock }">Add to Cart</button>
-        <button @click="removeItemFromCart" class="remove-item">Remove Item</button>
+        
+        <div class="buttons">
+          <button @click="addToCart" :disabled="!inStock" :class="{ disabledButton: !inStock }">Add to Cart</button>
+          <button @click="removeItemFromCart" class="remove-item">Remove Item</button>
+        </div>
         
         <product-tabs :reviews="reviews"></product-tabs>
       </div>
@@ -101,6 +104,59 @@ Vue.component('product', {
     })
   }
 });
+
+Vue.component('product-info-tabs', {
+  props: {
+    shipping: {
+      type: String,
+      required: true
+    },
+    description: {  
+      type: String,
+      required: true
+    },
+    details: {
+      type: Array, 
+      required: true
+    },
+    variants: {
+      type: Array,
+      required: true
+    },
+    sizes: {
+      type: Array, 
+      required: true
+    }
+  }, 
+  template: `
+    <div>
+      <span class="tab"
+      :class="{ activeTab: selectedTab === tab }"
+      v-for="(tab, index) in tabs" 
+      :key="index" 
+      @click="selectedTab = tab">
+        {{ tab }}
+      </span>
+      <p v-show="selectedTab === 'Shipping'">Shipping: {{ shipping }}</p>
+      <div v-show="selectedTab === 'Product Details'">
+       <p>{{ description }}</p>
+
+        <product-details :details="details"></product-details>
+ 
+        <p class="size-label">Sizes: </p>
+        <ul class="size-list">
+          <li v-for="size in sizes">{{ size }}</li>
+        </ul>
+      </div>
+    </div>
+  `,
+  data() {
+    return {
+      tabs: ['Shipping', 'Product Details'],
+      selectedTab: 'Product Details'
+    }
+  }
+})
 
 Vue.component('product-details', {
   props: {
