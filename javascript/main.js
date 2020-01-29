@@ -1,9 +1,9 @@
 Vue.component('product', {
   props: {
     premium: {
-      type: Boolean, 
-      required: true
-    }
+      type: Boolean,
+      required: true,
+    },
   },
   template: `
     <div class="product">
@@ -51,83 +51,77 @@ Vue.component('product', {
   `,
   data() {
     return {
-      product: "Socks",
+      product: 'Socks',
       selectedVariant: 0,
-      description: "A pair of warm, fuzzy socks to keep your feet warm on a cold, winter day.",
+      description: 'A pair of warm, fuzzy socks to keep your feet warm on a cold, winter day.',
       onSale: true,
-      details: ["80% Cotton", "20% Polyester", "Gender-Neutral"],
+      details: ['80% Cotton', '20% Polyester', 'Gender-Neutral'],
       variants: [
         {
           variantId: 2234,
           variantQuantity: 10,
-          variantColor: "green",
-          variantImage: "./assets/vmSocks-green-onWhite.jpg",
+          variantColor: 'green',
+          variantImage: './assets/vmSocks-green-onWhite.jpg',
         },
         {
           variantId: 2235,
           variantQuantity: 150,
-          variantColor: "blue",
-          variantImage: "./assets/vmSocks-blue-onWhite.jpg",
-        }
+          variantColor: 'blue',
+          variantImage: './assets/vmSocks-blue-onWhite.jpg',
+        },
       ],
-      sizes: [
-        "small",
-        "medium",
-        "large",
-        "X-Large",
-        "XXL"
-      ],
-      reviews: []
-    }
+      sizes: ['small', 'medium', 'large', 'X-Large', 'XXL'],
+      reviews: [],
+    };
   },
   methods: {
     addToCart: function() {
-      this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId)
+      this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId);
     },
     removeItemFromCart: function() {
-      this.$emit('remove-from-cart', this.variants[this.selectedVariant].variantId)
+      this.$emit('remove-from-cart', this.variants[this.selectedVariant].variantId);
     },
     updateProduct: function(index) {
-      this.selectedVariant = index
-      console.log(index)
+      this.selectedVariant = index;
+      console.log(index);
     },
     addReview: function(productReview) {
-      this.reviews.push(productReview)
-    }
+      this.reviews.push(productReview);
+    },
   },
   computed: {
     image() {
-      return this.variants[this.selectedVariant].variantImage
+      return this.variants[this.selectedVariant].variantImage;
     },
     inventory() {
-      return this.variants[this.selectedVariant].variantQuantity
+      return this.variants[this.selectedVariant].variantQuantity;
     },
     inStock() {
-      return this.variants[this.selectedVariant].variantQuantity > 0
+      return this.variants[this.selectedVariant].variantQuantity > 0;
     },
     shipping() {
       if (this.premium) {
-        return "Free"
+        return 'Free';
       } else {
-        return "2.99"
+        return '2.99';
       }
-    }
-  }
-})
+    },
+  },
+});
 
 Vue.component('product-details', {
   props: {
     details: {
-      type: Array, 
-      required: true
-    }
+      type: Array,
+      required: true,
+    },
   },
   template: `
     <ul>
       <li v-for="detail in details">{{ detail}}</li>
     </ul>
-  `
-})
+  `,
+});
 
 Vue.component('product-review', {
   template: `
@@ -181,8 +175,8 @@ Vue.component('product-review', {
       review: null,
       rating: null,
       recommended: null,
-      errors: []
-    }
+      errors: [],
+    };
   },
   methods: {
     onSubmit() {
@@ -191,52 +185,52 @@ Vue.component('product-review', {
           name: this.name,
           review: this.review,
           rating: this.rating,
-          recommended: this.recommended
-        }
-        
-        this.$emit('review-submitted', productReview)
+          recommended: this.recommended,
+        };
 
-        this.name = null
-        this.review = null
-        this.rating = null
-        this.recommended = null
+        this.$emit('review-submitted', productReview);
+
+        this.name = null;
+        this.review = null;
+        this.rating = null;
+        this.recommended = null;
       } else {
-        if(!this.name) {
-          this.errors.push("Name Required")
+        if (!this.name) {
+          this.errors.push('Name Required');
         }
-        if(!this.review) {
-          this.errors.push("Review Required")
+        if (!this.review) {
+          this.errors.push('Review Required');
         }
-        if(!this.rating) {
-          this.errors.push("Rating Required")
+        if (!this.rating) {
+          this.errors.push('Rating Required');
         }
-        if(!this.recommended) {
-          this.errors.push("Recommendation Required")
+        if (!this.recommended) {
+          this.errors.push('Recommendation Required');
         }
       }
-    }
-  }
-})
+    },
+  },
+});
 
 var app = new Vue({
   el: '#app',
   data: {
     premium: true,
-    cart: []
+    cart: [],
   },
   methods: {
     updateCart(id) {
-      this.cart.push(id)
+      this.cart.push(id);
     },
     removeItemFromCart(id) {
-      var cart = this.cart
+      var cart = this.cart;
       cart.forEach((productId, index) => {
-        numOfItemsToRemove = 1 // We only want to remove one instance of the product
+        numOfItemsToRemove = 1; // We only want to remove one instance of the product
         if (productId == id) {
-          cart.splice(index, numOfItemsToRemove)
+          cart.splice(index, numOfItemsToRemove);
         }
-      })
-      return cart
-    }
-  }
-})
+      });
+      return cart;
+    },
+  },
+});
